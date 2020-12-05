@@ -1,6 +1,7 @@
 import csv
+import os
 
-csvpath = "Resources/budget_data.csv"
+csvpath = os.path.join("Resources", "budget_data.csv")
 
 # declare variables
 sum_profits = 0
@@ -59,6 +60,20 @@ print(title)
 print("-" * len(title))
 print(f"Total months: {month_count}")
 print(f"Total Profit/Loss: ${sum_profits}")
+if average_delta < 0:
+    average_delta = "-$" + str(abs(average_delta))
 print(f"Average Profit/Loss change per Month: ${average_delta}")
 print(f"Greatest Profit: {max_profit['month']} with ${max_profit['value']}")
 print(f"Greatest Loss: {max_loss['month']} with -${abs(max_loss['value'])}")
+
+# write results to a text file
+with open("financial-analysis.txt", "w") as textoutput:
+    textoutput.writelines([
+        title,
+        "\n"+("-" * len(title)),
+        "\nTotal months: " + str(month_count),
+        "\nTotal Profit/Loss: $" + str(sum_profits),
+        "\nAverage Profit/Loss change per Month: $" + str(average_delta),
+        "\nGreatest Profit: " + max_profit['month'] + " with $" + str(max_profit['value']),
+        "\nGreatest Loss: " + max_loss['month'] + " with -$" + str(abs(max_loss['value']))
+    ])
