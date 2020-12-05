@@ -23,23 +23,25 @@ def checkMax(r):
         max_loss["month"] = r[0]
         max_loss["value"] = r[1]
 
-
-# open CSV, read it, get headers
-with open(csvpath, 'r') as csvfile:
+# open CSV, read it, store headers, store the rest of the data, then close the file
+with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csvheader = next(csvreader)
+    csvdata = list(csvreader)
     
     # store the count of the remaining rows (total months)
-    month_count = len(list(csvreader))
+    month_count = len(csvdata)
+    
+# check each row to see if its profit/loss is greater than the current greatest profit or loss
+for row in csvdata:
+    row[1] = int(row[1]) # convert the value string to an int
+    checkMax(row)
+    sum_profits += row[1] # add the current row's value to the sum_profits counter
 
-    # check each row to see if its profit/loss is greater than the current greatest profit or loss
-    for row in csvreader:
-        checkMax(row)
-        sum_profits += row[1] # add the current row's value to the sum_profits counter
+average = sum_profits / month_count # calculate average
 
-    average = sum_profits / month_count
-    print(f"Total months: {month_count}")
-    print(f"Total Profit/Loss: {sum_profits}")
-    print(f"Average Profit/Loss per Month: {average}")
-    print(f"Greatest Profit: {max_profit['month']} with ${max_profit['value']}")
-    print(f"Greatest Loss: {max_loss['month']} with -${abs(max_loss['value'])}")
+print(f"Total months: {month_count}")
+print(f"Total Profit/Loss: ${sum_profits}")
+print(f"Average Profit/Loss per Month: ${average}")
+print(f"Greatest Profit: {max_profit['month']} with ${max_profit['value']}")
+print(f"Greatest Loss: {max_loss['month']} with -${abs(max_loss['value'])}")
