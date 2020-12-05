@@ -34,6 +34,13 @@ def getPreviousRowValue(i):
     else:
         return 0
 
+# convert to string and make sure the negative values are properly formatted
+def toFormattedString(value):
+    if value < 0:
+        return "-$" + str(abs(value))
+    else:
+        return "$" + str(value)
+
 # open CSV, read it, store headers, store the rest of the data, then close the file
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
@@ -59,12 +66,10 @@ title = "Financial Analysis"
 print(title)
 print("-" * len(title))
 print(f"Total months: {month_count}")
-print(f"Total Profit/Loss: ${sum_profits}")
-if average_delta < 0:
-    average_delta = "-$" + str(abs(average_delta))
-print(f"Average Profit/Loss change per Month: ${average_delta}")
-print(f"Greatest Profit: {max_profit['month']} with ${max_profit['value']}")
-print(f"Greatest Loss: {max_loss['month']} with -${abs(max_loss['value'])}")
+print(f"Total Profit/Loss: {toFormattedString(sum_profits)}")
+print(f"Average Profit/Loss change per Month: {toFormattedString(average_delta)}")
+print(f"Greatest Profit: {max_profit['month']} with {toFormattedString(max_profit['value'])}")
+print(f"Greatest Loss: {max_loss['month']} with {toFormattedString(max_loss['value'])}")
 
 # write results to a text file
 with open("financial-analysis.txt", "w") as textoutput:
@@ -72,8 +77,8 @@ with open("financial-analysis.txt", "w") as textoutput:
         title,
         "\n"+("-" * len(title)),
         "\nTotal months: " + str(month_count),
-        "\nTotal Profit/Loss: $" + str(sum_profits),
-        "\nAverage Profit/Loss change per Month: $" + str(average_delta),
-        "\nGreatest Profit: " + max_profit['month'] + " with $" + str(max_profit['value']),
-        "\nGreatest Loss: " + max_loss['month'] + " with -$" + str(abs(max_loss['value']))
+        "\nTotal Profit/Loss: " + toFormattedString(average_delta),
+        "\nAverage Profit/Loss change per Month: " + toFormattedString(average_delta),
+        "\nGreatest Profit: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']),
+        "\nGreatest Loss: " + max_loss['month'] + " with " + toFormattedString(max_loss['value'])
     ])
