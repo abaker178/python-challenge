@@ -1,5 +1,6 @@
 # dependencies
 import os
+import re # finally!
 
 # variables
 filename = input("Which text file from ../Resources/ would you like to anayze? (do not include extension) ") + ".txt"
@@ -11,4 +12,12 @@ textpath = os.path.join("Resources",filename)
 with open(textpath, "r") as textreader:
     text = textreader.read()
 
-print(text)
+# get word count
+
+# get sentence count
+
+# get average letters per word
+
+# get average words per sentence
+
+# print results
