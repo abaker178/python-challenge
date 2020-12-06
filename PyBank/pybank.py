@@ -66,7 +66,7 @@ title = "Financial Analysis"
 print(title)
 print("-" * len(title))
 print("Total months: " + str(month_count))
-print("Total Profit/Loss: " + toFormattedString(average_delta))
+print("Total Profit/Loss: " + toFormattedString(sum_profits))
 print("Average Profit/Loss change per Month: " + toFormattedString(average_delta))
 print("Greatest Profit: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']))
 print("Greatest Loss: " + max_loss['month'] + " with " + toFormattedString(max_loss['value']))
