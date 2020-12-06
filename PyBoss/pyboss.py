@@ -13,10 +13,10 @@ with open(csvpath, 'r') as csvfile:
 
 # split the Name column into two different columns
 
-# rewrite the DOB to the proper format
+# rewrite the DOB column to the proper format
 
-# rewrite the SSN to the proper format
+# rewrite the SSN column to the proper format
 
-# change the state to an abbreviation -- use dictionary
+# change the State column to an abbreviation -- use dictionary
 
 # export results to a new csv
