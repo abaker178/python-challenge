@@ -20,28 +20,22 @@ def getLetterCount(t):
 def getSentenceCount(t):
     return len(re.split("(?<=[.!?])[\"\']? +", t))
 
-# get average letters per word
-def getLettersPerWord(t):
-    return int(round(getLetterCount(t) / getWordCount(t), 0))
-
-# get average words per sentence
-def getWordsPerSentence(t):
-    return int(round(getWordCount(t) / getSentenceCount(t),0))
-
 # open text file, store it as a list of lines, then close the file
 with open(textpath, "r") as textreader:
-    textlistraw = textreader.readlines()
+    textlist_raw = textreader.readlines()
 
 # format text to all be on one line
-textlistraw = list(filter(lambda line: line!="\n", textlistraw)) # did a bunch of extra practice on SoloLearn. Learned about filtering and lambda functions
-textlist = [line.replace("\n", "") for line in textlistraw]
+textlist_raw = list(filter(lambda line: line!="\n", textlist_raw)) # did a bunch of extra practice on SoloLearn. Learned about filtering and lambda functions
+textlist = [line.replace("\n", "") for line in textlist_raw]
 text = " ".join(textlist)
 
 # print results
 title = "Paragraph Analysis"
+print("")
 print(title)
 print("-" * len(title))
 print(f"Approximate Word Count: {getWordCount(text)}")
 print(f"Approximate Sentence Count: {getSentenceCount(text)}")
-print(f"Average Letter Count: {getLettersPerWord(text)}")
-print(f"Average Sentence Length: {getWordsPerSentence(text)}")
+print(f"Average Word Length: {round(getLetterCount(text) / getWordCount(text), 1)} letters per word")
+print(f"Average Sentence Length: {round(getWordCount(text) / getSentenceCount(text), 1)} words per sentence")
+print("")
