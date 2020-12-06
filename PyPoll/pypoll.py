@@ -56,14 +56,35 @@ for i in range(len(candidates["names"])):
 # print results
 title = "Election Results"
 divider = "-" * len(title)
+winner = getWinner(candidates)
 print(title)
 print(divider)
 print(f'Total Votes: {total_votes}')
 print(divider)
+# print each candidate as "Name: Percent (Votes)"
 for i in range(len(candidates["names"])):
     print(f'{candidates["names"][i]}: {candidates["percent"][i]} ({candidates["votes"][i]})')
 print(divider)
-print(getWinner(candidates))
+print(winner)
 print(divider)
 
 # write results to a text file
+with open("poll_results.txt", "w") as textoutput:
+    textoutput.writelines([
+        title,
+        "\n" + divider,
+        "\n" + "Total Votes: " + str(total_votes),
+        "\n" + divider
+    ])
+    # print each candidate as "Name: Percent (Votes)"
+    for i in range(len(candidates["names"])):
+        textoutput.writelines([
+            "\n" + candidates["names"][i] + ": ",
+            str(candidates["percent"][i]) + " ",
+            "(" + str(candidates["votes"][i]) + ")"
+        ])
+    textoutput.writelines([
+        "\n" + divider,
+        "\n" + winner,
+        "\n" + divider
+    ])
