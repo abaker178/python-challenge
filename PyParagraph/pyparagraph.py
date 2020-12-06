@@ -9,6 +9,8 @@ wordcount = 0
 
 # functions
 # get the total word count
+def getWordCount(t):
+    return len(t.split(" "))
 
 # get sentence count
 
@@ -21,10 +23,10 @@ with open(textpath, "r") as textreader:
     text = textreader.read()
 
 # print results
-#title = "Paragraph Analysis"
-#print(title)
-#print("-" * len(title))
-#print(f"Approximate Word Count: {getWordCount(text)}")
+title = "Paragraph Analysis"
+print(title)
+print("-" * len(title))
+print(f"Approximate Word Count: {getWordCount(text)}")
 #print(f"Approximate Sentence Count: {getSentCount(text)}")
 #print(f"Average Letter Count: {getLettersPerWord(text)}")
 #print(f"Average Sentence Length: {getWordsPerSentence(text)}")
