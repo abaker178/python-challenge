@@ -7,11 +7,11 @@ csvpath = os.path.join("Resources", "budget_data.csv")
 sum_profits = 0
 total_profit_loss = 0
 max_profit = {
-    "month": "Jan-1900",
+    "month": "placeholder",
     "value": 0
 }
 max_loss = {
-    "month": "Jan-1900",
+    "month": "placeholder",
     "value": 0
 }
 
@@ -46,9 +46,9 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csvheader = next(csvreader)
     csvdata = list(csvreader)
-    
-    # store the count of the remaining rows (total months)
-    month_count = len(csvdata)
+
+# store the count of the remaining rows (total months)
+month_count = len(csvdata)
     
 # for each row: check if the row has the greatest profit or loss, add the profit value to the total profits
 for i in range(len(csvdata)):
@@ -65,11 +65,11 @@ average_delta = round(total_profit_loss / (month_count-1), 2) # calculate averag
 title = "Financial Analysis"
 print(title)
 print("-" * len(title))
-print(f"Total months: {month_count}")
-print(f"Total Profit/Loss: {toFormattedString(sum_profits)}")
-print(f"Average Profit/Loss change per Month: {toFormattedString(average_delta)}")
-print(f"Greatest Profit: {max_profit['month']} with {toFormattedString(max_profit['value'])}")
-print(f"Greatest Loss: {max_loss['month']} with {toFormattedString(max_loss['value'])}")
+print("Total months: " + str(month_count))
+print("Total Profit/Loss: " + toFormattedString(average_delta))
+print("Average Profit/Loss change per Month: " + toFormattedString(average_delta))
+print("Greatest Profit: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']))
+print("Greatest Loss: " + max_loss['month'] + " with " + toFormattedString(max_loss['value']))
 
 # write results to a text file
 with open("financial-analysis.txt", "w") as textoutput:
