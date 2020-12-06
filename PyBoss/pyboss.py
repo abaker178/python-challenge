@@ -5,8 +5,8 @@ from us_state_abbrev import us_state_abbrev as usa
     # **source: https://gist.github.com/afhaque/29f0f4f37463c447770517a6c17d08f5
 
 # variables
-csvpath = os.path.join("Resources", "employee_data.csv")
-emp_list = [["Emp ID", "First Name", "Last Name", "DOB", "SSN", "State"]]
+csvpath = os.path.join("Resources", "employee_data.csv") # initial csv file's path
+emp_list = [["Emp ID", "First Name", "Last Name", "DOB", "SSN", "State"]] # headers in a nested list
 
 # functions
 # split the name into first and last and append both to the new employee list
@@ -42,6 +42,10 @@ for i in range(len(csvdata)):
     formatDOB(i, csvdata[i][2]) # rewrite the DOB column to the proper format
     formatSSN(i, csvdata[i][3]) # rewrite the SSN column to the proper format
     formatState(i, csvdata[i][4]) # change the State column to an abbreviation -- use dictionary
-    print(emp_list[i+1])
+    # print(emp_list[i+1])
 
 # export results to a new csv
+with open("employee_data_new.csv", "w", newline="") as csvoutput:
+    csvwriter = csv.writer(csvoutput, delimiter=',')
+    for row in emp_list:
+        csvwriter.writerow(row)
