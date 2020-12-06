@@ -1,6 +1,8 @@
 # dependencies
 import os
 import csv
+from us_state_abbrev import us_state_abbrev as usa
+    # **source: https://gist.github.com/afhaque/29f0f4f37463c447770517a6c17d08f5
 
 # variables
 csvpath = os.path.join("Resources", "employee_data.csv")
@@ -24,6 +26,9 @@ def formatSSN(i, ssn):
     ssn_list = ssn.split("-")
     emp_list[i+1].append("***-**-" + ssn_list[-1])
 
+def formatState(i, state):
+    emp_list[i+1].append(usa[state])
+
 # open CSV, read it, store headers, store the rest of the data, then close the file
 with open(csvpath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
@@ -36,8 +41,7 @@ for i in range(len(csvdata)):
     splitName(i, csvdata[i][1]) # split the Name column into two different columns
     formatDOB(i, csvdata[i][2]) # rewrite the DOB column to the proper format
     formatSSN(i, csvdata[i][3]) # rewrite the SSN column to the proper format
+    formatState(i, csvdata[i][4]) # change the State column to an abbreviation -- use dictionary
     print(emp_list[i+1])
-
-# change the State column to an abbreviation -- use dictionary
 
 # export results to a new csv
