@@ -18,7 +18,7 @@ def getLetterCount(t):
 
 # get total sentence count
 def getSentenceCount(t):
-    return len(re.split("(?<=[.!?])[\"\']? +", t))
+    return len(re.split("(?<=[^A-Z][.!?])[\"\']? +", t)) # ignores potential initials (Rutherford B. Hayes) and considers if there is a quote (" or ') after the period
 
 # open text file, store it as a list of lines, then close the file
 with open(textpath, "r") as textreader:
