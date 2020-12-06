@@ -19,6 +19,11 @@ def formatDOB(i, dob):
     dob_list.pop(0) # ... then remove it
     emp_list[i+1].append("/".join(dob_list))
 
+# split the SSN, take the last segment, tack it onto "***-**-", and add it to the new employee list
+def formatSSN(i, ssn):
+    ssn_list = ssn.split("-")
+    emp_list[i+1].append("***-**-" + ssn_list[-1])
+
 # open CSV, read it, store headers, store the rest of the data, then close the file
 with open(csvpath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
@@ -30,9 +35,8 @@ for i in range(len(csvdata)):
     emp_list[i+1].append(csvdata[i][0]) # store the Emp ID unchanged
     splitName(i, csvdata[i][1]) # split the Name column into two different columns
     formatDOB(i, csvdata[i][2]) # rewrite the DOB column to the proper format
+    formatSSN(i, csvdata[i][3]) # rewrite the SSN column to the proper format
     print(emp_list[i+1])
-
-# rewrite the SSN column to the proper format
 
 # change the State column to an abbreviation -- use dictionary
 
