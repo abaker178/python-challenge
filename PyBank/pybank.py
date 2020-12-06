@@ -1,9 +1,9 @@
+# Dependencies
 import csv
 import os
 
-csvpath = os.path.join("Resources", "budget_data.csv")
-
 # declare variables
+csvpath = os.path.join("Resources", "budget_data.csv")
 sum_profits = 0
 total_profit_loss = 0
 max_profit = {
@@ -67,9 +67,9 @@ print(title)
 print("-" * len(title))
 print("Total months: " + str(month_count))
 print("Total Profit/Loss: " + toFormattedString(sum_profits))
-print("Average Profit/Loss change per Month: " + toFormattedString(average_delta))
-print("Greatest Profit: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']))
-print("Greatest Loss: " + max_loss['month'] + " with " + toFormattedString(max_loss['value']))
+print("Average Profit/Loss shift per Month: " + toFormattedString(average_delta))
+print("Greatest Profit shift: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']))
+print("Greatest Loss shift: " + max_loss['month'] + " with " + toFormattedString(max_loss['value']))
 
 # write results to a text file
 with open("financial-analysis.txt", "w") as textoutput:
@@ -78,7 +78,7 @@ with open("financial-analysis.txt", "w") as textoutput:
         "\n"+("-" * len(title)),
         "\nTotal months: " + str(month_count),
         "\nTotal Profit/Loss: " + toFormattedString(average_delta),
-        "\nAverage Profit/Loss change per Month: " + toFormattedString(average_delta),
-        "\nGreatest Profit: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']),
-        "\nGreatest Loss: " + max_loss['month'] + " with " + toFormattedString(max_loss['value'])
+        "\nAverage Profit/Loss shift per Month: " + toFormattedString(average_delta),
+        "\nGreatest Profit shift: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']),
+        "\nGreatest Loss shift: " + max_loss['month'] + " with " + toFormattedString(max_loss['value'])
     ])

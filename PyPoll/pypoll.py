@@ -1,9 +1,9 @@
+# Dependencies
 import csv
 import os
 
-csvpath = os.path.join("Resources","election_data.csv")
-
 # declare variables
+csvpath = os.path.join("Resources","election_data.csv")
 candidates = {
         "names": [],
         "votes": [],
