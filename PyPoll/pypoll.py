@@ -10,6 +10,25 @@ candidates = {
         "percent": []
     }
 
+# compare each vote count to see who wins
+# return winner text
+def getWinner(c):
+    curr_winner_votes = 0
+    for i in range(len(c["votes"])):
+        if c["votes"][i] > curr_winner_votes:
+            curr_winner = c["names"][i]
+            curr_winner_votes = c["votes"][i]
+            tie = False
+        elif c["votes"][i] == curr_winner_votes:
+            curr_winner += (" and " + c["names"][i])
+            tie = True
+    
+    # check if there is a tie
+    if tie is True:
+        return "We have a tie between " + curr_winner
+    else:
+        return "Winner: " + curr_winner
+
 # open CSV, read it, store headers, store the rest of the data, then close the file
 with open(csvpath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
@@ -34,8 +53,6 @@ for i in range(len(candidates["names"])):
     temp_rounded_percent = round(temp_percent, 3)
     candidates["percent"].append(str(temp_rounded_percent) + "%")
 
-print (candidates)
-
 # print results
 title = "Election Results"
 divider = "-" * len(title)
@@ -46,7 +63,7 @@ print(divider)
 for i in range(len(candidates["names"])):
     print(f'{candidates["names"][i]}: {candidates["percent"][i]} ({candidates["votes"][i]})')
 print(divider)
-print("Winner:") # need to figure out how best to do this
+print(getWinner(candidates))
 print(divider)
 
 # write results to a text file
