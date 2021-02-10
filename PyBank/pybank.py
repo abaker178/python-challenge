@@ -3,7 +3,7 @@ import csv
 import os
 
 # declare variables
-csvpath = os.path.join("Resources", "budget_data.csv")
+csvpath = os.path.join("PyBank", "Resources", "budget_data.csv")
 sum_profits = 0
 total_profit_loss = 0
 max_profit = {
@@ -63,16 +63,16 @@ average_delta = round(total_profit_loss / (month_count-1), 2) # calculate averag
 
 # print results
 title = "Financial Analysis"
-print(title)
-print("-" * len(title))
-print("Total months: " + str(month_count))
-print("Total Profit/Loss: " + toFormattedString(sum_profits))
-print("Average Profit/Loss shift per Month: " + toFormattedString(average_delta))
-print("Greatest Profit shift: " + max_profit['month'] + " with " + toFormattedString(max_profit['value']))
-print("Greatest Loss shift: " + max_loss['month'] + " with " + toFormattedString(max_loss['value']))
+print(f"{title}\
+    \n{'-' * len(title)}\
+    \nTotal months: {month_count}\
+    \nTotal Profit/Loss: {toFormattedString(sum_profits)}\
+    \nAverage Profit/Loss shift per Month: {toFormattedString(average_delta)}\
+    \nGreatest Profit shift: {max_profit['month']} with {toFormattedString(max_profit['value'])}\
+    \nGreatest Loss shift: {max_loss['month']} with {toFormattedString(max_loss['value'])}")
 
 # write results to a text file
-with open("financial-analysis.txt", "w") as textoutput:
+with open(os.path.join("PyBank", "financial-analysis.txt"), "w") as textoutput:
     textoutput.writelines([
         title,
         "\n"+("-" * len(title)),

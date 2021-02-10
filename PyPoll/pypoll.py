@@ -3,12 +3,13 @@ import csv
 import os
 
 # declare variables
-csvpath = os.path.join("Resources","election_data.csv")
+csvpath = os.path.join("PyPoll", "Resources", "election_data.csv")
 candidates = {
         "names": [],
         "votes": [],
         "percent": []
     }
+
 
 # compare each vote count to see who wins
 # return winner text
@@ -69,7 +70,7 @@ print(winner)
 print(divider)
 
 # write results to a text file
-with open("poll_results.txt", "w") as textoutput:
+with open(os.path.join("PyPoll", "poll_results.txt"), "w") as textoutput:
     textoutput.writelines([
         title,
         "\n" + divider,

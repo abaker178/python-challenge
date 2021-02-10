@@ -3,9 +3,9 @@ import os
 import csv
 from us_state_abbrev import us_state_abbrev as usa
     # **source: https://gist.github.com/afhaque/29f0f4f37463c447770517a6c17d08f5
-
+    
 # variables
-csvpath = os.path.join("Resources", "employee_data.csv") # initial csv file's path
+csvpath = os.path.join("PyBoss", "Resources", "employee_data.csv") # initial csv file's path
 emp_list = [["Emp ID", "First Name", "Last Name", "DOB", "SSN", "State"]] # headers in a nested list
 
 # functions
@@ -45,7 +45,7 @@ for i in range(len(csvdata)):
     # print(emp_list[i+1])
 
 # export results to a new csv
-with open("employee_data_new.csv", "w", newline="") as csvoutput:
+with open(os.path.join("PyBoss", "employee_data_new.csv"), "w", newline="") as csvoutput:
     csvwriter = csv.writer(csvoutput, delimiter=',')
     for row in emp_list:
         csvwriter.writerow(row)
